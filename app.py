@@ -26,7 +26,7 @@ def process_holdings_selection(holdings_df):
         new_ticker = holdings_df.iloc[selected_row_index]["Ticker"]
         if new_ticker != st.session_state.selected_ticker:
             st.session_state.selected_ticker = new_ticker
-            st.experimental_rerun()
+            st.rerun()
 
 
 # -----------------------------
@@ -647,8 +647,8 @@ st.markdown(
 # Data Loading (from data/ folder)
 # -----------------------------
 def _get_data_dir() -> Path:
-    """Get the data directory path (BUZZ DASHBOARD/data/)"""
-    return Path(__file__).resolve().parent.parent / "data"
+    """Get the data directory path (same directory as app.py)"""
+    return Path(__file__).resolve().parent
 
 
 def _find_current_holdings_file() -> Path:
