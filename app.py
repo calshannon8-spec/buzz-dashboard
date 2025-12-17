@@ -3185,8 +3185,8 @@ if st.session_state.view_mode_state == "BUZZ Heatmap":
     try:
         import plotly.graph_objects as go
 
-        # Reload fresh data for heatmap (don't use filtered df)
-        heatmap_df = load_buzz_data()
+        # Reload fresh data for heatmap (use cache invalidation for fresh data)
+        heatmap_df = load_buzz_data(_file_mtime=_get_file_mtime(_holdings_file))
         tickers_list = heatmap_df["Ticker"].tolist()
 
         # Show loading message while fetching data
